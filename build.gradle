@@ -16,18 +16,14 @@ repositories {
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.6.2'
-    testImplementation 'org.seleniumhq.selenium:selenium-java:3.141.59'
-    testImplementation 'org.seleniumhq.selenium:selenium-chrome-driver:3.141.59'// добавляем зависимоть, чтобы CI проходил, т.к у меня Windows, а CI на Linux
-    testCompile("io.github.bonigarcia:webdrivermanager:3.8.1")
-}
-
-test {
-    useJUnitPlatform()
-    // в тестах, вызывая `gradlew test -Dselenide.headless=true` будем передавать этот параметр в JVM (где его подтянет Selenide)
-    systemProperty 'selenide.headless', System.getProperty('selenide.headless')
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.1'
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.59'
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-chrome-driver', version: '3.141.59'
+    implementation group: 'io.github.bonigarcia', name: 'webdrivermanager', version: '4.4.3'
 }
 
 test {
     useJUnitPlatform()
 }
+
