@@ -16,6 +16,7 @@ install:
 build_script:
   - ./gradlew test --info  # запускаем тест, флаг --info позволяет выводить больше информации
   
-  port: 7777
+  port: 
+  -7777
   
  
