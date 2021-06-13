@@ -41,8 +41,7 @@ public class SeleniumTest {
         driver.findElement(cssSelector("[data-test-id=phone] input")).sendKeys("+79195631111");
         driver.findElement(cssSelector("[data-test-id=agreement] ")).click();
         driver.findElement(cssSelector("span[class=button__text]")).click();
-        String message = driver.findElement(cssSelector("[data-test-id='order-success']")).getText();
-        assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", message.strip());
+        assertTrue(!driver.findElements(cssSelector("[data-test-id=\"order-success\"]")).isEmpty(),"Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.");
     }
 
 
@@ -53,8 +52,8 @@ public class SeleniumTest {
         driver.findElement(cssSelector("[data-test-id=phone] input")).sendKeys("+72022571580");
         driver.findElement(cssSelector("[data-test-id=agreement] ")).click();
         driver.findElement(cssSelector("span[class=button__text]")).click();
-        String message = driver.findElement(cssSelector("span [class=input__sub]")).getText();
-        assertEquals("Имя и Фамилия указаные неверно. Допустимы только русские буквы, пробелы и дефисы.", message.strip());
+        assertTrue(!driver.findElements(cssSelector(".input_invalid ")).isEmpty(), 
+                    "Имя и Фамилия указаные неверно. Допустимы только русские буквы, пробелы и дефисы.");
     }
 
 
@@ -66,8 +65,7 @@ public class SeleniumTest {
         driver.findElement(cssSelector("[data-test-id=phone] input")).sendKeys("+720225715801");
         driver.findElement(cssSelector("[data-test-id=agreement]")).click();
         driver.findElement(cssSelector("span[class=button__text]")).click();
-        String message = driver.findElement(cssSelector("#root > div > form > div:nth-child(2) > span > span > span.input__sub")).getText();
-        assertEquals("Телефон указан неверно. Должно быть 11 цифр, например, +79012345678.", message.strip());
+       assertTrue(!driver.findElements(cssSelector(".input_invalid ")).isEmpty(), "Телефон указан неверно. Должно быть 11 цифр, например, +79012345678.");
     }
 
     @Test
@@ -75,6 +73,6 @@ public class SeleniumTest {
         driver.findElement(cssSelector("[type='text']")).sendKeys("Таня");
         driver.findElement(cssSelector("[type='tel']")).sendKeys("+72022571580");
         driver.findElement(className("button__text")).click();
-        assertTrue(!driver.findElements(cssSelector(".input_invalid ")).isEmpty());
+        assertTrue(!driver.findElements(cssSelector(".input_invalid ")).isEmpty(), "Не нажат флажок согласия на обработку персональных данных");
     }
 }
