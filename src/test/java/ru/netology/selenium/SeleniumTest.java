@@ -70,6 +70,8 @@ public class SeleniumTest {
 
     @Test
     void shouldNotPromptToTheNextPageAgreementUnchecked() {
+         driver.get("http://localhost:7777");
+        WebElement form = driver.findElement(cssSelector("form[class='form form_size_m form_theme_alfa-on-white']"));
       driver.findElement(cssSelector("[data-test-id=name] input")).sendKeys("Таня");
         driver.findElement(cssSelector("[data-test-id=phone] input")).sendKeys("+72022571580");
         driver.findElement(cssSelector("[data-test-id=agreement]")).click();
