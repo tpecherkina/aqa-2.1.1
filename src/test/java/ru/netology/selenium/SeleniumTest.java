@@ -70,9 +70,9 @@ public class SeleniumTest {
 
     @Test
     void shouldNotPromptToTheNextPageAgreementUnchecked() {
-       driver.findElement(cssSelector("[type='text']")).sendKeys("Таня");
-        driver.findElement(cssSelector("[type='tel']")).sendKeys("+72022571580");
-        driver.findElement(className("button__text")).click();
+        driver.findElement(cssSelector("[data-test-id=name] input")).sendKeys("Таня");
+        driver.findElement(cssSelector("[data-test-id=phone] input")).sendKeys("+79195631111");
+           driver.findElement(cssSelector("span[class=button__text]")).click();
         assertTrue(!driver.findElements(cssSelector(".input_invalid ")).isEmpty(), "Не нажат флажок согласия на обработку персональных данных");
     }
 }
